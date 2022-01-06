@@ -10,23 +10,23 @@
 
 ------
 
-Make 2 copies of each containers
+membuat 2 copy setiap container
 
 ![Screenshot (546)](https://user-images.githubusercontent.com/93419670/148258029-750783d0-df53-4e9f-b4e1-bbf7840548e2.png)
 
-Then start each containers
+lalu jalankan container tersebut
 
 ![Screenshot (547)](https://user-images.githubusercontent.com/93419670/148258139-c7ef30b9-7795-462e-9d8d-3900430559df.png)
 
-Go to 'ubuntu_php7.4_2', then change the IP address to '10.0.3.111' so that differ from 'ubuntu_php7.4'. Same as 'ubuntu_php7.4_3' change the IP address to '10.0.3.123'
+masuk ke 'ubuntu_php7.4_2', lalu ganti IP address menjadi '10.0.3.111'. begitupun dengan 'ubuntu_php7.4_3' gantilah IP address menjadi'10.0.3.121'
 
 ![Screenshot (548)](https://user-images.githubusercontent.com/93419670/148258214-2a9dc5a3-42b6-4d93-b076-cd9d2e362539.png)
 
-Go to etc/hosts to register 'lxc_php7_2.dev'
+masuk ke etc/hosts lalu register 'lxc_php7_2.dev'
 
 ![Screenshot (550)](https://user-images.githubusercontent.com/93419670/148258321-b4c025f3-8fe1-4db1-948d-365876d5d0ac.png)
 
-Then change the server name
+mengganti server name
 
 ![Screenshot (552)](https://user-images.githubusercontent.com/93419670/148258425-90c5bca4-6cfb-4f61-adfd-b4a56925f0a2.png)
 
@@ -35,23 +35,23 @@ Restart nginx then curl it. Repeat the same steps for 'ubuntu_php7.4_3'
 ![Screenshot (553)](https://user-images.githubusercontent.com/93419670/148258543-00dcccbe-0ceb-4804-a63e-faab30449f11.png)
 ![Screenshot (554)](https://user-images.githubusercontent.com/93419670/148258720-8d07f576-5988-4bd4-a863-3c115d79643b.png)
 
-Same as ubuntu_php7.4 we need to start all container
+masih sama dengan ubuntu_php7.4 kita perlu start seluruh container
 
 ![Screenshot (556)](https://user-images.githubusercontent.com/93419670/148258854-2de8a672-4848-46bd-8709-767cbc88624a.png)
 
-Go to 'debian_php5.6_2' and change the IP address to '10.0.3.112'. The same for 'debian_php5.6_3' and change the IP address to '10.0.3.122'
+masuk ke 'debian_php5.6_2' lalu ganti IP address menjadi '10.0.3.112'. begitupun dengan 'debian_php5.6_3' ganti IP address menjadi '10.0.3.122'
 
 ![Screenshot (557)](https://user-images.githubusercontent.com/93419670/148259167-43460480-791c-4686-856e-5b114425fe35.png)
 
-Register 'lxc_php5_2.dev' at /etc/hosts
+Register 'lxc_php5_2.dev' di /etc/hosts
 
 ![Screenshot (558)](https://user-images.githubusercontent.com/93419670/148259204-184e8e55-ff8a-4712-b8e7-6a3857cce11c.png)
 
-change the server name, then repeat the same steps for 'debian_php5.6_3'. don't forget to restart the container
+ganti nama server, lalu lakukan langkah yang sama untuk 'debian_php5.6_3'. jangan lupa untuk restart container
 
 ![Screenshot (559)](https://user-images.githubusercontent.com/93419670/148259277-e7321944-5857-41be-9ab6-8595e03743b4.png)
 
-Register all the contaiers in /etc/hosts (on vm)
+Register seluruh container ke dalam /etc/hosts (di vm)
 
 ![Screenshot (566)](https://user-images.githubusercontent.com/93419670/148259389-9efad118-0359-483f-b33d-bffd1188db08.png)
 
@@ -113,36 +113,34 @@ Then we go back to the jmeter and redo it
 
 ![Screenshot (592)](https://user-images.githubusercontent.com/93419670/148260532-6447c6c3-dc32-4fd9-bd72-059f984686f8.png)
 
-Analysis
+Analisis
 
-Below is the results from when we use load balancer and not using the load balancer
+Dibawah ini merupakan hasil dari ketika menggunakan load balancer dan tidak menggunakan load balancer
 
- - When there is 50 users that access our web, if we don't use load balancer the average time of user accessing our web is
+ - ketika terdapat 50 users yang mengakses web kami, apabila kita tidak menggunakan load balancer maka waktu rata-rata pengguna mengakses web kami adalah
    - landing : 785 ms = 0.79 s
    - blog : 360 ms = 0.36 s
    - app : 438 ms = 0.44 s
-- When we use load balancer, then
+- ketika kami menggunakan load balancer, maka
    - landing : 686 ms = 0.69 s
    - blog : 229 ms = 0.23 s
    - app : 225 ms = 0.23 s
 
-Here we can know that the average time of user accessing our web is faster then if we use load balancer. For the throughput or the amount of user accessing our web is
+Disini kami dapat mengetahui bahwa rata-rata waktu user mengakses web kami lebih cepat menggunakan load balancer dibandingkan jika tidak menggunakan load balancer. Untuk throughput atau jumlah pengguna yang mengakses web kami yaitu:
 
-- When there is 50 users that access our web, if we don't use load balancer the amount of user accessing our web is
+- Ketika ada 50 pengguna yang mengakses web kami, jika kami tidak menggunakan load balancer, jumlah pengguna yang mengakses web kami adalah
 
   - landing : 42 user / second
   - blog :  43 user / second
   - app : 47 user / second
 
-- When we use load balancer, then
+- ketika menggunakan load balancer, maka
 
   - landing : 54 user / second
   - blog :  84 user / second
   - app : 77 user / second
 
-  Here we can know that the average time of amount of user accessing our web in 1 second is faster then if we don't use load balancer.
-
-
-  The conclusion is, if we use load balancer, then the time is faster and the amount of users that accessing our web is much more then when we don't use load balancer.
-
+  Di sini kami dapat mengetahui bahwa dengan menggunakan load balancer web dapat terakses lebih banyak user dalam 1 detik 
+  
+  Kesimpulannya, jika kami menggunakan load balancer, maka waktu yang diperlukan lebih cepat dan jumlah user yang mengakses web kita lebih banyak daripada jika kita tidak menggunakan load balancer.
   
